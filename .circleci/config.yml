@@ -31,11 +31,6 @@ jobs:
           command: |
             sudo apt-get update
             sudo apt-get install -y python3 build-essential pkg-config libsqlite3-dev
-            npm config set python /usr/bin/python3
-      - run:
-          name: Install Node.js dependencies
-          command: |
-            export PYTHON=/usr/bin/python3
             npm install
       - run:
           name: Pruebas Cypress
