@@ -1,4 +1,4 @@
-> 🚩 Looking for another real-world demonstration of Cypress in action? Check out the [Cypress Real World App repository](https://github.com/cypress-io/cypress-realworld-app).
+> 🚩 Looking for another real-world demonstration of Cypress in action? Check out the [Cypress Real World App repository](https://github.com/cypress-io/cypress-realworld-app). h
 
 # Conduit App [![renovate-app badge][renovate-badge]][renovate-app] [![CircleCI](https://circleci.com/gh/cypress-io/cypress-example-conduit-app/tree/master.svg?style=svg&circle-token=f127e83138e505b26bb90ab7c0bcb60e5265fecb)](https://circleci.com/gh/cypress-io/cypress-example-conduit-app/tree/master) [![Coverage Status](https://coveralls.io/repos/github/cypress-io/cypress-example-conduit-app/badge.svg?branch=master)](https://coveralls.io/github/cypress-io/cypress-example-conduit-app?branch=master) [![Cypress.io Test Dashboard](https://img.shields.io/badge/cypress.io-dashboard-green.svg?style=flat-square)](https://dashboard.cypress.io/#/projects/bh5j1d)
 
