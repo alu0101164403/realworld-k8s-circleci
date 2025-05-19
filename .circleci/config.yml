@@ -27,6 +27,19 @@ jobs:
             fi
             echo "VPN conectada"
       - run:
+          name: Instalar dependencias para compilación de módulos nativos
+          command: |
+            curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.4/install.sh | bash
+            export NVM_DIR="$HOME/.nvm"
+            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+            nvm install 12.16.2
+            nvm use 12.16.2
+            sudo ln -sf /usr/bin/python3 /usr/bin/python
+            npm config set python python3
+            sudo apt-get update
+            sudo apt-get install -y python3 build-essential pkg-config libsqlite3-dev curl
+            npm install
+      - run:
           name: Pruebas Cypress
           command: |
             npx cypress run --config baseUrl=$APP_URL --env apiUrl=$API_URL
