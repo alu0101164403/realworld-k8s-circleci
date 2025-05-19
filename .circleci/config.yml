@@ -1,0 +1,43 @@
+version: 2.1
+jobs:
+  build:
+    machine:
+      image: ubuntu-2204:current
+    steps:
+      - checkout
+      - run: echo "hello world"
+      - run:
+          name: Update and install
+          command: |
+            sudo apt update && sudo apt install -y openconnect curl ca-certificates
+      - run:
+          name: VPN Connection
+          command: |
+            echo "Conectando a VPN..."
+            echo "${VPN_PASSWORD}" | sudo openconnect --protocol=gp --user=${VPN_USER} --passwd-on-stdin vpn.ull.es &
+            timeout=0
+            while ! ip a show tun0 &>/dev/null && [ $timeout -lt 60 ]; do
+               echo "Esperando conexión VPN..."
+               sleep 1
+               timeout=$((timeout+1))
+            done
+            if [ $timeout -ge 60 ]; then
+              echo "No se pudo conectar a la VPN en 60 segundos."
+              exit 1
+            fi
+            echo "VPN conectada"
+      - run:
+          name: Pruebas Cypress
+          command: |
+            npx cypress run --config baseUrl=$APP_URL --env apiUrl=$API_URL
+      - run:
+          name: Disconnect from VPN
+          command: |
+            sudo pkill --signal SIGINT openconnect || true
+          when: always
+
+workflows:
+  version: 2
+  test-and-deploy:
+    jobs:
+      - test
