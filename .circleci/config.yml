@@ -27,16 +27,8 @@ jobs:
             fi
             echo "VPN conectada"
       - run:
-          name: Use node 12.16.2
-          command: |
-            nvm install 12.16.2
-            nvm use 12.16.2
-            node -v
-            npm install
-      - run:
           name: Install Node.js dependencies
           command: |
-            sudo apt install -y nodejs npm
             npm install 
       - run:
           name: Pruebas Cypress
