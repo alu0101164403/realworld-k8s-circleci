@@ -26,6 +26,11 @@ jobs:
               exit 1
             fi
             echo "VPN conectada"
+       - run:
+          name: Install Node.js dependencies
+          command: |
+            sudo apt install -y nodejs npm
+            npm install 
       - run:
           name: Pruebas Cypress
           command: |
