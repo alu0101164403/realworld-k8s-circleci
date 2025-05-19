@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: realworld-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: realworld-frontend
+  template:
+    metadata:
+      labels:
+        app: realworld-frontend
+    spec:
+      containers:
+        - name: frontend
+          image: alu0101164403544/realworld:latest
+          ports:
+            - containerPort: 4100
+          env:
+            - name: REACT_APP_API_URL
+              value: "http://realworld-backend:3000"
+

@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: realworld-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: realworld-backend
+  template:
+    metadata:
+      labels:
+        app: realworld-backend
+    spec:
+      containers:
+        - name: backend
+          image: alu0101164403544/realworld:latest
+          ports:
+            - containerPort: 3000
+
