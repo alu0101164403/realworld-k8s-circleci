@@ -34,7 +34,9 @@ jobs:
             npm config set python /usr/bin/python3
       - run:
           name: Install Node.js dependencies
-          command: npm install 
+          command: |
+            export PYTHON=/usr/bin/python3
+            npm install
       - run:
           name: Pruebas Cypress
           command: |
